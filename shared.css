@@ -32,26 +32,40 @@ main {
   left: 0;
   background: #2ddf5c;
   padding: 0.5rem 1rem;
-  z-index: 1;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.main-header > div {
+/* old code to align the logo image with the nav - positioning is now controlled by flexbox */
+/* .main-header > div {
   display: inline-block;
   vertical-align: middle;
-}
+} */
 
-.main-header__brand {
+/* .main-header__brand {
   color: #0e4f1f;
   text-decoration: none;
   font-weight: bold;
   height: 2.5rem;
   display: inline-block;
   vertical-align: middle;
+} */
+.main-header__brand {
+  color: #0e4f1f;
+  text-decoration: none;
+  font-weight: bold;
 }
+/* .main-header__brand img {
+  the 100% only works here cus the <a> tag .main-header__brand display:inline-block property. <a> adjust height to their content, so if the img is 10000px 
+  that's the size it will be displayed in because the <a> will adjust it's height.
+  height: 100%; 
+} */
 
 .main-header__brand img {
-  height: 100%;
-  /* width: 100%; */
+  height: 2.5rem;
+  vertical-align: middle;
 }
 .toggle-button {
   width: 3rem;
@@ -77,28 +91,6 @@ main {
 
 .main-nav {
   display: none;
-}
-
-@media (min-width: 40rem) {
-  .toggle-button__bar {
-    display: none;
-  }
-  .main-nav {
-    display: inline-block;
-    text-align: right;
-    width: calc(100% - 100px);
-    vertical-align: middle;
-  }
-  .main-nav__items {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .main-nav__item {
-    display: inline-block;
-    margin: 0 1rem;
-  }
 }
 
 .main-nav__item a,
@@ -142,7 +134,7 @@ main {
   width: 80%;
   height: 100vh;
 }
-
+/* old code
 .mobile-nav__items {
   width: 90%;
   height: 100%;
@@ -150,6 +142,17 @@ main {
   margin: 10% auto;
   padding: 0;
   text-align: center;
+} */
+.mobile-nav__items {
+  width: 90%;
+  height: 100%;
+  list-style: none;
+  /* margin: 10% auto; */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-nav__item {
@@ -165,24 +168,29 @@ main {
   padding: 2rem;
   margin-top: 3rem;
 }
-
-.main-footer__links {
+/* old code */
+/* .main-footer__links {
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: center;
+} */
+.main-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.main-footer__link {
+/* old code */
+/* .main-footer__link {
   display: block;
   margin: 1rem 0;
-}
+} */
 
-@media (min-width: 40rem) {
-  .main-footer__link {
-    display: inline-block;
-    margin: 0 1rem;
-  }
+.main-footer__link {
+  margin: 0.5rem 0;
 }
 
 .main-footer__link a {
@@ -215,7 +223,56 @@ main {
 .button:focus {
   outline: none;
 }
+@media (min-width: 40rem) {
+  .toggle-button__bar {
+    display: none;
+  }
+  /* old code */
+  /* .main-nav {
+    display: inline-block;
+    text-align: right;
+    width: calc(100% - 100px);
+    vertical-align: middle;
+  } */
+  .main-nav {
+    display: flex;
+  }
+  /* old code */
+  /* .main-nav__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  } */
+  .main-nav__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  /* old code */
+  /* .main-nav__item {
+    display: inline-block;
+    margin: 0 1rem;
+  } */
+  .main-nav__item {
+    margin: 0 1rem;
+  }
+}
 
+@media (min-width: 40rem) {
+  /* old code */
+  /* .main-footer__link {
+    display: inline-block;
+    margin: 0 1rem;
+  } */
+  .main-footer__link {
+    margin: 0 1rem;
+  }
+  .main-footer__links {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
 /* to open and close the backdrop/modal/sidbar menu with use of the classList.add || remove methods
 .open {
   display: block !important;
