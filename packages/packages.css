@@ -15,6 +15,7 @@ main {
   margin: 1rem 0;
   background: #b7f5cb;
   position: relative;
+  overflow: hidden;
 }
 .package:hover,
 .package:active {
@@ -32,11 +33,15 @@ main {
   position: absolute;
   top: 1.2rem;
   right: 0;
-  margin: 1.2rem;
+  margin: 0;
   font-size: 0.8rem;
   color: white;
   background: #ff5454;
   padding: 0.5rem;
+  transform: rotateZ(45deg) translateX(3rem) translateY(-1rem);
+  transform-origin: center;
+  width: 12rem;
+  text-align: center;
 }
 
 .package__subtitle {

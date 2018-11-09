@@ -6,13 +6,26 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
+  display: grid;
+  grid-template-rows: 3.5rem auto fit-content(8rem);
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+  height: 100%;
 }
 main {
-  min-height: calc(100vh- 2.75rem - 8rem);
-  margin-top: 3.5rem;
+  /* min-height: calc(100vh- 2.75rem - 8rem); */
+  /* margin-top: 3.5rem; */
+  grid-area: main;
 }
 .backdrop {
   position: fixed;
@@ -167,6 +180,7 @@ main {
   background: black;
   padding: 2rem;
   margin-top: 3rem;
+  grid-area: footer;
 }
 /* old code */
 /* .main-footer__links {
