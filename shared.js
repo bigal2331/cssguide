@@ -1,36 +1,54 @@
-let backdrop = document.querySelector(".backdrop");
-let modal = document.querySelector(".modal");
-let selectPlanBtns = document.querySelectorAll(".plan button");
-let modalBtns = document.querySelectorAll(".modal button");
-let btnToggle = document.querySelector(".toggle-button");
-let mobileNav = document.querySelector(".mobile-nav");
+var backdrop = document.querySelector(".backdrop");
+var modal = document.querySelector(".modal");
+var modalNoButton = document.querySelector(".modal__action--negative");
+var selectPlanButtons = document.querySelectorAll(".plan button");
+var toggleButton = document.querySelector(".toggle-button");
+var mobileNav = document.querySelector(".mobile-nav");
 
-eventAdder = (ele, displayProp, eventType, displayPropReceiver) => {
-  if (NodeList.prototype.isPrototypeOf(ele)) {
-    ele.forEach(btn => {
-      btn.addEventListener(eventType, () => {
-        applyDisplayProp(displayPropReceiver, displayProp);
-      });
-    });
-    return;
-  }
-  ele.addEventListener(eventType, () =>
-    applyDisplayProp(displayPropReceiver, displayProp)
-  );
-};
+// console.dir(backdrop.style['background-image']);
 
-applyDisplayProp = (displayPropReceiver, displayProp) => {
-  displayPropReceiver.forEach(ele => {
-    ele.style.display = displayProp;
+// console.dir(backdrop);
+for (var i = 0; i < selectPlanButtons.length; i++) {
+  selectPlanButtons[i].addEventListener("click", function() {
+    // modal.style.display = "block";
+    // backdrop.style.display = "block";
+    // modal.className = 'open'; // This will actually overwrite the complete class list
+    modal.classList.add("open");
+    backdrop.style.display = "block";
+    setTimeout(function() {
+      backdrop.classList.add("open");
+    }, 10);
   });
-};
-
-eventAdder(btnToggle, "block", "click", [mobileNav, backdrop]);
-eventAdder(backdrop, "none", "click", [backdrop, mobileNav]);
-if (selectPlanBtns) {
-  eventAdder(selectPlanBtns, "block", "click", [modal, backdrop]);
 }
 
-if (modalBtns) {
-  eventAdder(modalBtns, "none", "click", [backdrop]);
+backdrop.addEventListener("click", function() {
+  // mobileNav.style.display = 'none';
+  mobileNav.classList.remove("open");
+  closeModal();
+});
+
+if (modalNoButton) {
+  modalNoButton.addEventListener("click", closeModal);
 }
+
+function closeModal() {
+  //   backdrop.style.display = "none";
+  //   modal.style.display = "none";
+  if (modal) {
+    modal.classList.remove("open");
+  }
+  backdrop.classList.remove("open");
+  setTimeout(function() {
+    backdrop.style.display = "none";
+  }, 200);
+}
+
+toggleButton.addEventListener("click", function() {
+  // mobileNav.style.display = 'block';
+  // backdrop.style.display = 'block';
+  mobileNav.classList.add("open");
+  backdrop.style.display = "block";
+  setTimeout(function() {
+    backdrop.classList.add("open");
+  }, 10);
+});
